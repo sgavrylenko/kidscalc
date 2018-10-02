@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"github.com/Knetic/govaluate"
-	"github.com/lego/log"
+	"log"
 	"strconv"
 	"strings"
 )
@@ -58,8 +58,9 @@ func init() {
 
 func renderTemplate(params map[string]interface{}) string {
 	var r *strings.Replacer
-	switch {
-	case (params["m"] == 1) || (params["d"] == 1):
+	// TODO: replace switch with if statement
+	switch (params["m"] == 1) && (params["d"] == 1) {
+	case true:
 		r = strings.NewReplacer(
 			"a", strconv.Itoa(params["a"].(int)),
 			"b", strconv.Itoa(params["b"].(int)),
